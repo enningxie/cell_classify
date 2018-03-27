@@ -12,16 +12,16 @@ model = models.Sequential()
 
 model.add(layers.Conv2D(32, (3, 3), activation='relu', input_shape=(150, 150, 3)))
 model.add(layers.MaxPool2D((2, 2)))
-model.add(layers.Conv2D(64, (3, 3), activation='relu'))
+model.add(layers.Conv2D(32, (3, 3), activation='relu'))
 model.add(layers.MaxPool2D((2, 2)))
-model.add(layers.Conv2D(128, (3, 3), activation='relu'))
+model.add(layers.Conv2D(32, (3, 3), activation='relu'))
 model.add(layers.MaxPool2D((2, 2)))
-model.add(layers.Conv2D(64, (3, 3), activation='relu'))
+model.add(layers.Conv2D(32, (3, 3), activation='relu'))
 model.add(layers.MaxPool2D((2, 2)))
 model.add(layers.Flatten())
 # add dropout layer
-model.add(layers.Dropout(0.5))
-model.add(layers.Dense(128, activation='relu'))
+model.add(layers.Dropout(0.2))
+model.add(layers.Dense(32, activation='relu'))
 model.add(layers.Dense(3, activation='softmax'))
 
 print(model.summary())
@@ -53,10 +53,10 @@ validation_generator = test_datagen.flow_from_directory(
 # fitting the model using a batch generator
 history = model.fit_generator(
     train_generator,
-    steps_per_epoch=1000,
+    steps_per_epoch=1100,
     epochs=10,
     validation_data=validation_generator,
-    validation_steps=450
+    validation_steps=150
 )
 
 print(history.history)

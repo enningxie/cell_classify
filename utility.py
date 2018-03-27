@@ -93,7 +93,7 @@ def main():
     rename_datafiles(NILM_PATH, 'NILM')
 
     # split train/test set
-    split_train_test_set(0.7)
+    split_train_test_set(0.9)
 
 
 if __name__ == '__main__':

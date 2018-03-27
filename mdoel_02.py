@@ -11,11 +11,11 @@ validation_dir = '/home/enningxie/Documents/DataSets/CELL_IMAGES/CELL_images/tes
 
 model = models.Sequential()
 
-model.add(ResNet50(include_top='False', weights='imagenet', input_shape=(224, 224, 3)))
+model.add(ResNet50(include_top='False', weights=None, input_shape=(224, 224, 3)))
 # model.add(layers.Flatten())
 # add dropout layer
-model.add(layers.Dropout(0.5))
-model.add(layers.Dense(128, activation='relu'))
+# model.add(layers.Dropout(0.5))
+# model.add(layers.Dense(128, activation='relu'))
 model.add(layers.Dense(3, activation='softmax'))
 
 print(model.summary())
@@ -33,7 +33,7 @@ test_datagen = ImageDataGenerator(rescale=1./255)
 train_generator = train_datagen.flow_from_directory(
     train_dir,  # target directory
     target_size=(224, 224),  # resize all images to 150x150
-    batch_size=32,
+    batch_size=64,
     class_mode='categorical'  # binary
 )
 
@@ -47,10 +47,10 @@ validation_generator = test_datagen.flow_from_directory(
 # fitting the model using a batch generator
 history = model.fit_generator(
     train_generator,
-    steps_per_epoch=1000,
+    steps_per_epoch=1100,
     epochs=10,
     validation_data=validation_generator,
-    validation_steps=450
+    validation_steps=110
 )
 
 print(history.history)
