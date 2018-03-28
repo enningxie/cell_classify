@@ -1,7 +1,7 @@
 import os
 import shutil
 
-BASE_PATH = '/home/enningxie/Documents/DataSets/CELL_images'
+BASE_PATH = '/home/ck/cell_DL/cell_classify/CELL_images'
 HSIL_PATH = os.path.join(BASE_PATH, 'HSIL')
 LSIL_PATH = os.path.join(BASE_PATH, 'LSIL')
 NILM_PATH = os.path.join(BASE_PATH, 'NILM')
@@ -34,7 +34,7 @@ def move_to(src_path, rate):
 
 
 def split_train_test_set(rate):
-    # move_to(HSIL_PATH, rate)
+    move_to(HSIL_PATH, rate)
     move_to(LSIL_PATH, rate)
     move_to(NILM_PATH, rate)
     os.removedirs(HSIL_PATH)
@@ -43,23 +43,22 @@ def split_train_test_set(rate):
 
 
 def rename_datafiles(path, subname):
-    count = 0
+    count=0
     for f in os.listdir(path):
         tmp_path = os.path.join(path, f)
         tmp = os.path.splitext(f)
         count += 1
-        # print(count)
         os.rename(tmp_path, os.path.join(path, subname+'_'+str(count)+tmp[-1]))
 
 
 def main():
     # rename_op
     rename_datafiles(HSIL_PATH, 'HSIL')
-    rename_datafiles(LSIL_PATH, 'HSIL')
+    rename_datafiles(LSIL_PATH, 'LSIL')
     rename_datafiles(NILM_PATH, 'NILM')
 
     # split train/test set
-    split_train_test_set(0.7)
+    split_train_test_set(0.9)
 
 
 if __name__ == '__main__':
