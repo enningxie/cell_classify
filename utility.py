@@ -2,7 +2,11 @@ import os
 import shutil
 import cv2
 
+<<<<<<< HEAD
+BASE_PATH = '/home/ck/cell_DL/cell_classify/CELL_images'
+=======
 BASE_PATH = '/home/enningxie/Documents/DataSets/CELL_IMAGES/CELL_images'
+>>>>>>> 483fda971b37cf5d10029d493f2d7c2c3760b76d
 HSIL_PATH = os.path.join(BASE_PATH, 'HSIL')
 LSIL_PATH = os.path.join(BASE_PATH, 'LSIL')
 NILM_PATH = os.path.join(BASE_PATH, 'NILM')
@@ -54,6 +58,14 @@ def move_to(src_path, subname, rate):
 
 
 def split_train_test_set(rate):
+<<<<<<< HEAD
+    move_to(HSIL_PATH, rate)
+    move_to(LSIL_PATH, rate)
+    move_to(NILM_PATH, rate)
+    os.removedirs(HSIL_PATH)
+    os.removedirs(LSIL_PATH)
+    os.removedirs(NILM_PATH)
+=======
     move_to(HSIL_PATH, 'HSIL', rate)
     move_to(LSIL_PATH, 'LSIL', rate)
     move_to(NILM_PATH, 'NILM', rate)
@@ -63,15 +75,15 @@ def split_train_test_set(rate):
     convert_img(test_path, 'HSIL')
     convert_img(test_path, 'LSIL')
     convert_img(test_path, 'NILM')
+>>>>>>> 483fda971b37cf5d10029d493f2d7c2c3760b76d
 
 
 def rename_datafiles(path, subname):
-    count = 0
+    count=0
     for f in os.listdir(path):
         tmp_path = os.path.join(path, f)
         tmp = os.path.splitext(f)
         count += 1
-        # print(count)
         os.rename(tmp_path, os.path.join(path, subname+'_'+str(count)+tmp[-1]))
 
 
@@ -89,7 +101,7 @@ def convert_img(src_path, subname):
 def main():
     # rename_op
     rename_datafiles(HSIL_PATH, 'HSIL')
-    rename_datafiles(LSIL_PATH, 'HSIL')
+    rename_datafiles(LSIL_PATH, 'LSIL')
     rename_datafiles(NILM_PATH, 'NILM')
 
     # split train/test set
