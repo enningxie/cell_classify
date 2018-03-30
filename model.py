@@ -10,13 +10,13 @@ validation_dir = '/home/enningxie/Documents/DataSets/CELL_IMAGES/CELL_images/tes
 
 model = models.Sequential()
 
-model.add(layers.Conv2D(32, (3, 3), activation='relu', input_shape=(150, 150, 3)))
+model.add(layers.Conv2D(32, (3, 3), padding='same', activation='relu', input_shape=(32, 32, 3)))
 model.add(layers.MaxPool2D((2, 2)))
-model.add(layers.Conv2D(32, (3, 3), activation='relu'))
+model.add(layers.Conv2D(32, (3, 3), padding='same', activation='relu'))
 model.add(layers.MaxPool2D((2, 2)))
-model.add(layers.Conv2D(32, (3, 3), activation='relu'))
+model.add(layers.Conv2D(32, (3, 3), padding='same', activation='relu'))
 model.add(layers.MaxPool2D((2, 2)))
-model.add(layers.Conv2D(32, (3, 3), activation='relu'))
+model.add(layers.Conv2D(32, (3, 3), padding='same', activation='relu'))
 model.add(layers.MaxPool2D((2, 2)))
 model.add(layers.Flatten())
 # add dropout layer
@@ -38,14 +38,14 @@ test_datagen = ImageDataGenerator(rescale=1./255)
 
 train_generator = train_datagen.flow_from_directory(
     train_dir,  # target directory
-    target_size=(150, 150),  # resize all images to 150x150
+    target_size=(32, 32),  # resize all images to 150x150
     batch_size=32,
     class_mode='categorical'  # binary
 )
 
 validation_generator = test_datagen.flow_from_directory(
     validation_dir,
-    target_size=(150, 150),
+    target_size=(32, 32),
     batch_size=32,
     class_mode='categorical'
 )
