@@ -50,7 +50,7 @@ train_datagen_aug = ImageDataGenerator(
     horizontal_flip=True
 )
 
-train_generator = train_datagen.flow_from_directory(
+train_generator = train_datagen_aug.flow_from_directory(
     train_dir,  # target directory
     target_size=(50, 50),  # resize all images to 150x150
     batch_size=32,
@@ -66,7 +66,7 @@ validation_generator = test_datagen.flow_from_directory(
 
 # fitting the model using a batch generator
 history = model.fit_generator(
-    train_datagen_aug,
+    train_generator,
     steps_per_epoch=150,
     epochs=10,
     validation_data=validation_generator,
