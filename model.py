@@ -52,7 +52,7 @@ train_datagen_aug = ImageDataGenerator(
 
 train_generator = train_datagen_aug.flow_from_directory(
     train_dir,  # target directory
-    target_size=(50, 50),  # resize all images to 150x150
+    target_size=(32, 32),  # resize all images to 150x150
     batch_size=32,
     class_mode='categorical'  # binary
 )
